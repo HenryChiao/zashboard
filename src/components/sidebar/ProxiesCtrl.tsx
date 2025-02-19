@@ -137,7 +137,7 @@ export default defineComponent({
                 key={mode}
                 value={mode}
               >
-                {t(mode.toLowerCase()) || mode}
+                {t(mode.toLowerCase())}
               </option>
             )
           })}

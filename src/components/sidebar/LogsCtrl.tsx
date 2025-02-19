@@ -20,8 +20,14 @@ export default defineComponent({
     const { t } = useI18n()
     const settingsModel = ref(false)
     const insertLogSearchHistory = debounce((log: string) => {
-      if (!log || logSearchHistory.value.includes(log)) {
+      if (!log) {
         return
+      }
+
+      const idx = logSearchHistory.value.indexOf(log)
+
+      if (idx !== -1) {
+        logSearchHistory.value.splice(idx, 1)
       }
 
       logSearchHistory.value.unshift(log)

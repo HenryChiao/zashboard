@@ -1,4 +1,3 @@
-import { isSingBox } from '@/api'
 import { PROXY_TAB_TYPE } from '@/constant'
 import { configs } from '@/store/config'
 import {
@@ -24,19 +23,13 @@ const renderGroups = computed(() => {
     return proxyProviederList.value.map((group) => group.name)
   }
 
-  if (!isSingBox.value && configs.value?.mode.toUpperCase() === GLOBAL) {
+  if (configs.value?.mode.toUpperCase() === GLOBAL) {
     return [GLOBAL]
   }
 
-  const proxyGroups = [...proxyGroupList.value]
-
-  if (isSingBox.value) {
-    proxyGroups.push(GLOBAL)
-  }
-
   return manageHiddenGroup.value
-    ? proxyGroups
-    : proxyGroups.filter((name) => !hiddenGroupMap.value[name])
+    ? proxyGroupList.value
+    : proxyGroupList.value.filter((name) => !hiddenGroupMap.value[name])
 })
 
 export const useProxies = () => {
