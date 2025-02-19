@@ -78,7 +78,6 @@ const zh: LANG_MESSAGE = {
   bar: '条',
   exportSettings: '导出设置',
   importSettings: '导入设置',
-  clearIconCache: '清空图标缓存',
   unavailableProxy: '隐藏不可用节点',
   protocolTips:
     '您正在尝试连接一个http后端但zashboard是通过https提供的，这可能会导致连接错误，请在浏览器设置中允许不安全的内容，设置在浏览器地址栏左侧。',

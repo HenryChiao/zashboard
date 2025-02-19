@@ -105,11 +105,3 @@ const backgroundDB = useIndexedDB('base64')
 export const saveBase64ToIndexedDB = (val: string) => backgroundDB.put(BACKGROUND_IMAGE, val)
 export const getBase64FromIndexedDB = () => backgroundDB.get(BACKGROUND_IMAGE)
 export const deleteBase64FromIndexedDB = () => backgroundDB.clear()
-
-const iconDB = useIndexedDB('iconCache')
-
-export const saveIconToIndexedDB = iconDB.put
-export const getIconFromIndexedDB = (key: string) => iconDB.get(key)
-export const clearIconFromIndexedDB = () => iconDB.clear()
-export const getAllIconKeys = () => iconDB.getAllKeys()
-export const deleteIconFromIndexedDB = (key: string) => iconDB.del(key)

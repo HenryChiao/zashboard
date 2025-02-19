@@ -39,10 +39,14 @@ watch(
 )
 
 const backgroundImage = computed(() => {
-  if (customBackgroundURL.value.includes(LOCAL_IMAGE)) {
-    return backgroundInDB.value
+  if (!customBackgroundURL.value) {
+    return ''
   }
-  return customBackgroundURL.value + `?v=${date}`
+
+  if (customBackgroundURL.value.includes(LOCAL_IMAGE)) {
+    return `background-image: url('${backgroundInDB.value}');`
+  }
+  return `background-image: url('${customBackgroundURL.value}?v=${date}');`
 })
 const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
 
@@ -74,8 +78,13 @@ onMounted(() => {
   <div
     ref="app"
     id="app-content"
-    :class="`flex h-dvh w-screen overflow-x-hidden bg-base-100 ${fontClassName} custom-background-${dashboardTransparent} ${customBackgroundURL && 'custom-background bg-cover bg-center'}`"
-    :style="`background-image: url('${backgroundImage}');`"
+    :class="[
+      'flex h-dvh w-screen overflow-x-hidden bg-base-100',
+      fontClassName,
+      backgroundImage &&
+        `custom-background-${dashboardTransparent} custom-background bg-cover bg-center`,
+    ]"
+    :style="backgroundImage"
   >
     <RouterView />
     <div
